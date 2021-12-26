@@ -24,7 +24,7 @@ namespace Miniboard
             services.AddRazorPages();
         }
 
-        public void Configure(IApplicationBuilder app, IWebHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             app.UseDeveloperExceptionPage();
 
