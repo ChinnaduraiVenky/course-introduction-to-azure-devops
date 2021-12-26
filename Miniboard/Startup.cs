@@ -31,7 +31,7 @@ namespace Miniboard
             app.UseStaticFiles();
             app.UseCookiePolicy();
 
-            app.UseRoutung();
+            app.UseRouting();
             
             app.UseAuthorization();
             
