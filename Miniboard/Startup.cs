@@ -1,9 +1,9 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Miniboard.Data;
 
 namespace Miniboard
@@ -21,17 +21,25 @@ namespace Miniboard
         {
             services.AddScoped<IContextFactory, ContextFactory>();
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddRazorPages();
         }
 
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostingEnvironment env)
         {
             app.UseDeveloperExceptionPage();
 
             app.UseStaticFiles();
             app.UseCookiePolicy();
 
-            app.UseMvc();
+            app.UseRoutung();
+            
+            app.UseAuthorization();
+            
+            app.UseEndpoints(endpoints =>
+              { 
+                    endpoints.MapRazorPages();
+              });
+            
         }
     }
 }
